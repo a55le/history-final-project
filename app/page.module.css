@@ -1,0 +1,77 @@
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
+
+.timelineSection {
+  border-bottom: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 64px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+.hallsSection {
+  padding: 64px 0;
+}
+
+.hallsGrid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .hallsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hallsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.exhibitsSection {
+  border-top: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 64px 0;
+}
+
+.exhibitsGrid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .exhibitsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .exhibitsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .exhibitsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

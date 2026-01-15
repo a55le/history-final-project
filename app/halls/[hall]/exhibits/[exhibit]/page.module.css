@@ -1,0 +1,345 @@
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
+
+.breadcrumb {
+  border-bottom: 1px solid var(--border);
+  background-color: var(--card);
+}
+
+.breadcrumbContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+@media (min-width: 1024px) {
+  .breadcrumbContainer {
+    padding: 16px 32px;
+  }
+}
+
+.breadcrumbNav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+.breadcrumbLink {
+  transition: color 0.2s;
+}
+
+.breadcrumbLink:hover {
+  color: var(--primary);
+}
+
+.breadcrumbCurrent {
+  color: var(--foreground);
+}
+
+.article {
+  padding: 48px 0;
+}
+
+.articleContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 1024px) {
+  .articleContainer {
+    padding: 0 32px;
+  }
+}
+
+.articleGrid {
+  display: grid;
+  gap: 48px;
+}
+
+@media (min-width: 1024px) {
+  .articleGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.imageColumn {
+  position: relative;
+}
+
+.imageSticky {
+  position: sticky;
+  top: 96px;
+}
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.imageWrapper img {
+  object-fit: cover;
+}
+
+.artifactsCard {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--card);
+}
+
+.artifactsTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.artifactsTitle svg {
+  height: 20px;
+  width: 20px;
+  color: var(--primary);
+}
+
+.artifactsList {
+  margin-top: 12px;
+  list-style: none;
+}
+
+.artifactsItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+.artifactsDot {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background-color: var(--primary);
+}
+
+.contentColumn {
+  /* empty */
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.dateBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  background-color: rgba(166, 124, 82, 0.1);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.dateBadge svg {
+  height: 16px;
+  width: 16px;
+}
+
+.hallBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+.hallBadge svg {
+  height: 16px;
+  width: 16px;
+}
+
+.exhibitTitle {
+  font-family: var(--font-serif);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+@media (min-width: 640px) {
+  .exhibitTitle {
+    font-size: 36px;
+  }
+}
+
+.exhibitDescription {
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+}
+
+.divider {
+  height: 1px;
+  margin: 32px 0;
+  background-color: var(--border);
+}
+
+.fullDescription {
+  margin-top: 32px;
+}
+
+.fullDescription p {
+  margin-bottom: 16px;
+  line-height: 1.7;
+  color: var(--foreground);
+}
+
+.navigation {
+  display: grid;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 640px) {
+  .navigation {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.navCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--card);
+  transition: all 0.2s;
+}
+
+.navCard:hover {
+  border-color: rgba(166, 124, 82, 0.3);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.navCardNext {
+  justify-content: flex-end;
+}
+
+.navCardIcon {
+  color: var(--muted-foreground);
+  transition: transform 0.2s;
+}
+
+.navCard:hover .navCardIcon {
+  color: var(--primary);
+}
+
+.navCard:hover .navCardIconPrev {
+  transform: translateX(-4px);
+}
+
+.navCard:hover .navCardIconNext {
+  transform: translateX(4px);
+}
+
+.navCardIcon svg {
+  height: 20px;
+  width: 20px;
+}
+
+.navCardText {
+  text-align: left;
+}
+
+.navCardTextRight {
+  text-align: right;
+}
+
+.navCardLabel {
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.navCardTitle {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--foreground);
+  transition: color 0.2s;
+}
+
+.navCard:hover .navCardTitle {
+  color: var(--primary);
+}
+
+.backSection {
+  border-top: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 48px 0;
+}
+
+.backSectionContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .backSectionContainer {
+    padding: 0 32px;
+  }
+}
+
+.backText {
+  margin-bottom: 16px;
+  color: var(--muted-foreground);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--foreground);
+  transition: all 0.2s;
+}
+
+.backButton:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.backButton svg {
+  height: 16px;
+  width: 16px;
+}
