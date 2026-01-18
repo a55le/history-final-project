@@ -11,6 +11,9 @@
 .breadcrumb {
   border-bottom: 1px solid var(--border);
   background-color: var(--card);
+  position: sticky;
+  top: 65px;
+  z-index: 50;
 }
 
 .breadcrumbContainer {

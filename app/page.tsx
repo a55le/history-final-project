@@ -5,13 +5,18 @@ import { SectionHeader } from "@/components/section-header"
 import { HallCard } from "@/components/hall-card"
 import { ExhibitCard } from "@/components/exhibit-card"
 import { Timeline } from "@/components/timeline"
-import { getAllHalls, getAllExhibits, getExhibitsSortedByDate } from "@/lib/museum-data"
+import { getAllHalls, getAllExhibits, getExhibitsSortedByDate } from "@/lib/db"
 import styles from "./page.module.css"
+import {numeralize, pluralize} from "numeralize-ru";
 
-export default function HomePage() {
-  const halls = getAllHalls()
-  const exhibits = getAllExhibits()
-  const sortedExhibits = getExhibitsSortedByDate()
+function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export default async function HomePage() {
+  const halls = await getAllHalls()
+  const exhibits = await getAllExhibits()
+  const sortedExhibits = await getExhibitsSortedByDate()
 
   return (
     <div className={styles.wrapper}>
@@ -31,7 +36,7 @@ export default function HomePage() {
           <div className={styles.container}>
             <SectionHeader
               title="Залы музея"
-              description="Четыре тематических зала, охватывающих историю России от древности до современности"
+              description={`${capitalizeFirstLetter(numeralize(halls.length))} тематических ${pluralize(halls.length, 'зал', 'зала', 'залов')}, охватывающих историю России от призвания варяг до космических достижений СССР`}
             />
             <div className={styles.hallsGrid}>
               {halls.map((hall) => (
@@ -45,7 +50,7 @@ export default function HomePage() {
           <div className={styles.container}>
             <SectionHeader
               title="Все экспонаты"
-              description="Полная коллекция музея: документы, артефакты и исторические свидетельства"
+              description="Полная коллекция музея: документы, экспонаты и исторические свидетельства"
             />
             <div className={styles.exhibitsGrid}>
               {exhibits.map((exhibit) => (

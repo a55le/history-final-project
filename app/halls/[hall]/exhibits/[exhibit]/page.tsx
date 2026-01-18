@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { getExhibitById, getHallById, getExhibitsByHall, getAllExhibits } from "@/lib/museum-data"
+import { getExhibitById, getHallById, getExhibitsByHall, getAllExhibits } from "@/lib/db"
 import { ChevronLeft, ChevronRight, Calendar, Archive, MapPin } from "lucide-react"
 import styles from "./page.module.css"
 
@@ -12,7 +12,7 @@ interface ExhibitPageProps {
 }
 
 export async function generateStaticParams() {
-  const exhibits = getAllExhibits()
+  const exhibits = await getAllExhibits()
   return exhibits.map((exhibit) => ({
     hall: exhibit.hallId,
     exhibit: exhibit.id,
@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: ExhibitPageProps) {
   const { hall: hallId, exhibit: exhibitId } = await params
-  const exhibit = getExhibitById(hallId, exhibitId)
+  const exhibit = await getExhibitById(exhibitId)
   if (!exhibit) return { title: "Экспонат не найден" }
   return {
     title: `${exhibit.title} | Виртуальный музей`,
@@ -31,14 +31,14 @@ export async function generateMetadata({ params }: ExhibitPageProps) {
 
 export default async function ExhibitPage({ params }: ExhibitPageProps) {
   const { hall: hallId, exhibit: exhibitId } = await params
-  const exhibit = getExhibitById(hallId, exhibitId)
-  const hall = getHallById(hallId)
+  const exhibit = await getExhibitById(exhibitId)
+  const hall = await getHallById(hallId)
 
   if (!exhibit || !hall) {
     notFound()
   }
 
-  const hallExhibits = getExhibitsByHall(hallId)
+  const hallExhibits = await getExhibitsByHall(hallId)
   const currentIndex = hallExhibits.findIndex((e) => e.id === exhibitId)
   const prevExhibit = currentIndex > 0 ? hallExhibits[currentIndex - 1] : null
   const nextExhibit = currentIndex < hallExhibits.length - 1 ? hallExhibits[currentIndex + 1] : null
@@ -77,7 +77,7 @@ export default async function ExhibitPage({ params }: ExhibitPageProps) {
                     <div className={styles.artifactsCard}>
                       <h3 className={styles.artifactsTitle}>
                         <Archive />
-                        Связанные артефакты
+                        Связанные темы
                       </h3>
                       <ul className={styles.artifactsList}>
                         {exhibit.artifacts.map((artifact, index) => (
@@ -96,7 +96,7 @@ export default async function ExhibitPage({ params }: ExhibitPageProps) {
                 <div className={styles.metaRow}>
                   <div className={styles.dateBadge}>
                     <Calendar />
-                    <span>{exhibit.date}</span>
+                    <span>{exhibit.startDate === exhibit.endDate ? exhibit.startDate : exhibit.endDate}</span>
                   </div>
                   <div className={styles.hallBadge}>
                     <MapPin />

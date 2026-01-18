@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import type { Exhibit } from "@/lib/museum-data"
+import type { Exhibit } from "@/lib/db"
 import { Calendar, ArrowRight } from "lucide-react"
 import styles from "./exhibit-card.module.css"
 
@@ -20,7 +20,7 @@ export function ExhibitCard({ exhibit, showHallLink = true }: ExhibitCardProps) 
         <div className={styles.content}>
           <div className={styles.date}>
             <Calendar />
-            <span>{exhibit.date}</span>
+            <span>{exhibit.startDate === exhibit.endDate ? exhibit.startDate : `${exhibit.startDate}-${exhibit.endDate}`}</span>
           </div>
           <h3 className={styles.title}>{exhibit.title}</h3>
           <p className={styles.description}>{exhibit.description}</p>

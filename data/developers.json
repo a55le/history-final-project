@@ -1,0 +1,20 @@
+[
+    {
+      "name": "Шиков Юрий",
+      "role": "Разработчик",
+      "avatar": "/placeholder.svg?height=200&width=200",
+      "description": "Визуальное оформление и пользовательский интерфейс"
+    },
+    {
+      "name": "Степанов Никита",
+      "role": "Разработчик",
+      "avatar": "/placeholder.svg?height=200&width=200",
+      "description": "Серверная часть и архитектура"
+    },
+    {
+      "name": "Дудка Игорь",
+      "role": "Разработчик",
+      "avatar": "/placeholder.svg?height=200&width=200",
+      "description": "Визуальное оформление, пользовательский интерфейс и сбор информации"
+    }
+]

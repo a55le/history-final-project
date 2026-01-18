@@ -5,7 +5,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SectionHeader } from "@/components/section-header"
 import { ExhibitCard } from "@/components/exhibit-card"
-import { getHallById, getExhibitsByHall, getAllHalls } from "@/lib/museum-data"
+import { getHallById, getExhibitsByHall, getAllHalls } from "@/lib/db"
 import { ChevronLeft, Clock, Archive } from "lucide-react"
 import styles from "./page.module.css"
 
@@ -14,7 +14,7 @@ interface HallPageProps {
 }
 
 export async function generateStaticParams() {
-  const halls = getAllHalls()
+  const halls = await getAllHalls()
   return halls.map((hall) => ({
     hall: hall.id,
   }))
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: HallPageProps) {
   const { hall: hallId } = await params
-  const hall = getHallById(hallId)
+  const hall = await getHallById(hallId)
   if (!hall) return { title: "Зал не найден" }
   return {
     title: `${hall.title} | Виртуальный музей`,
@@ -32,13 +32,15 @@ export async function generateMetadata({ params }: HallPageProps) {
 
 export default async function HallPage({ params }: HallPageProps) {
   const { hall: hallId } = await params
-  const hall = getHallById(hallId)
+  const hall = await getHallById(hallId)
 
   if (!hall) {
     notFound()
   }
 
-  const exhibits = getExhibitsByHall(hallId)
+  const halls = await getAllHalls();
+
+  const exhibits = await getExhibitsByHall(hallId)
 
   return (
     <div className={styles.wrapper}>
@@ -104,7 +106,7 @@ export default async function HallPage({ params }: HallPageProps) {
             <SectionHeader title="Другие залы" description="Продолжите путешествие по музею" />
 
             <div className={styles.otherHallsGrid}>
-              {getAllHalls()
+              {halls
                 .filter((h) => h.id !== hallId)
                 .map((otherHall) => (
                   <Link key={otherHall.id} href={`/halls/${otherHall.id}`} className={styles.otherHallCard}>

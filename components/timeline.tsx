@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react"
 import Link from "next/link"
-import type { Exhibit } from "@/lib/museum-data"
+import type { Exhibit } from "@/lib/db"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import styles from "./timeline.module.css"
 
@@ -62,7 +62,7 @@ export function Timeline({ exhibits }: TimelineProps) {
           <Link key={exhibit.id} href={`/halls/${exhibit.hallId}/exhibits/${exhibit.id}`} className={styles.item}>
             <div className={styles.itemContent}>
               <div className={styles.year}>
-                <span className={styles.yearText}>{exhibit.date}</span>
+                <span className={styles.yearText}>{exhibit.startDate === exhibit.endDate ? exhibit.startDate : `${exhibit.startDate}-${exhibit.endDate}`}</span>
               </div>
 
               <div className={styles.lineWrapper}>

@@ -2,7 +2,7 @@ import Image from "next/image"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SectionHeader } from "@/components/section-header"
-import { getDevelopers } from "@/lib/museum-data"
+import { getDevelopers } from "@/lib/db"
 import { Landmark, BookOpen, Users, Globe } from "lucide-react"
 import styles from "./page.module.css"
 
@@ -76,7 +76,7 @@ export default function AboutPage() {
 
             <div className={styles.teamGrid}>
               {developers.map((dev) => (
-                <div key={dev.id} className={styles.teamCard}>
+                <div key={dev.name} className={styles.teamCard}>
                   <div className={styles.teamAvatar}>
                     <Image src={dev.avatar || "/placeholder.svg"} alt={dev.name} fill />
                   </div>
@@ -97,17 +97,15 @@ export default function AboutPage() {
               <h2 className={styles.aboutTitle}>О проекте</h2>
               <div className={styles.aboutText}>
                 <p>
-                  Виртуальный музей истории России — это образовательный проект, созданный для итоговой работы по
-                  истории. Мы собрали информацию о ключевых событиях российской истории и представили её в удобном
+                  Виртуальный музей — это образовательный продукт, созданный в рамках итогового проекта по курсу "История России". Мы собрали информацию о ключевых событиях российской истории и представили её в удобном
                   интерактивном формате.
                 </p>
                 <p>
-                  Проект охватывает период более чем в тысячу лет: от призвания варягов в 862 году до космических
-                  достижений СССР. Каждый экспонат содержит подробное описание события, его значение для истории страны
-                  и связанные артефакты.
+                  Наш продукт охватывает период более чем в тысячу лет: от призвания варягов в 862 году до космических
+                  достижений СССР. Каждый экспонат содержит подробное описание и его значения для истории страны.
                 </p>
                 <p>
-                  Мы надеемся, что этот музей поможет вам лучше узнать историю России и вдохновит на дальнейшее изучение
+                  Мы надеемся, что этот музей поможет Вам лучше узнать историю России и вдохновит на дальнейшее изучение
                   нашего прошлого.
                 </p>
               </div>

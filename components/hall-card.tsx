@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import type { Hall } from "@/lib/museum-data"
+import type { Hall } from "@/lib/db"
 import { ArrowRight } from "lucide-react"
 import styles from "./hall-card.module.css"
 
