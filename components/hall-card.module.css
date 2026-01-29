@@ -44,6 +44,13 @@
   right: 12px;
 }
 
+.favoriteWrapper {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+}
+
 .badgeText {
   display: inline-block;
   padding: 4px 8px;

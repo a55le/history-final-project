@@ -5,7 +5,9 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { SectionHeader } from "@/components/section-header"
 import { ExhibitCard } from "@/components/exhibit-card"
+import { FavoriteButton } from "@/components/favorite-button"
 import { getHallById, getExhibitsByHall, getAllHalls } from "@/lib/db"
+import { getCurrentUser, getUserFavorites, isHallFavorite } from "@/lib/auth"
 import { ChevronLeft, Clock, Archive } from "lucide-react"
 import styles from "./page.module.css"
 
@@ -39,8 +41,11 @@ export default async function HallPage({ params }: HallPageProps) {
   }
 
   const halls = await getAllHalls();
-
   const exhibits = await getExhibitsByHall(hallId)
+  const currentUser = await getCurrentUser()
+  const favorites = await getUserFavorites()
+  const isAuthenticated = !!currentUser
+  const hallIsFavorite = await isHallFavorite(hallId)
 
   return (
     <div className={styles.wrapper}>
@@ -78,6 +83,14 @@ export default async function HallPage({ params }: HallPageProps) {
                   <Clock />
                   <span>~{hall.exhibitsCount * 5} минут на осмотр</span>
                 </div>
+                <div className={styles.heroFavorite}>
+                  <FavoriteButton 
+                    type="hall" 
+                    id={hallId} 
+                    isFavorite={hallIsFavorite} 
+                    isAuthenticated={isAuthenticated} 
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -90,7 +103,13 @@ export default async function HallPage({ params }: HallPageProps) {
             {exhibits.length > 0 ? (
               <div className={styles.exhibitsGrid}>
                 {exhibits.map((exhibit) => (
-                  <ExhibitCard key={exhibit.id} exhibit={exhibit} showHallLink={false} />
+                  <ExhibitCard 
+                    key={exhibit.id} 
+                    exhibit={exhibit} 
+                    showHallLink={false}
+                    isFavorite={favorites?.exhibits.includes(exhibit.id) || false}
+                    isAuthenticated={isAuthenticated}
+                  />
                 ))}
               </div>
             ) : (

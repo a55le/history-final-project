@@ -183,6 +183,10 @@
   width: 16px;
 }
 
+.favoriteWrapper {
+  margin-left: auto;
+}
+
 .exhibitTitle {
   font-family: var(--font-serif);
   font-size: 30px;

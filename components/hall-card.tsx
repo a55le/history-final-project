@@ -2,13 +2,16 @@ import Link from "next/link"
 import Image from "next/image"
 import type { Hall } from "@/lib/db"
 import { ArrowRight } from "lucide-react"
+import { FavoriteButton } from "./favorite-button"
 import styles from "./hall-card.module.css"
 
 interface HallCardProps {
   hall: Hall
+  isFavorite?: boolean
+  isAuthenticated?: boolean
 }
 
-export function HallCard({ hall }: HallCardProps) {
+export function HallCard({ hall, isFavorite = false, isAuthenticated = false }: HallCardProps) {
   return (
     <Link href={`/halls/${hall.id}`} className={styles.link}>
       <article className={styles.card}>
@@ -17,6 +20,9 @@ export function HallCard({ hall }: HallCardProps) {
           <div className={styles.imageOverlay} />
           <div className={styles.badge}>
             <span className={styles.badgeText}>{hall.exhibitsCount} экспонатов</span>
+          </div>
+          <div className={styles.favoriteWrapper}>
+            <FavoriteButton type="hall" id={hall.id} isFavorite={isFavorite} isAuthenticated={isAuthenticated} />
           </div>
         </div>
         <div className={styles.content}>

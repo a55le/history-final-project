@@ -6,6 +6,7 @@ import { HallCard } from "@/components/hall-card"
 import { ExhibitCard } from "@/components/exhibit-card"
 import { Timeline } from "@/components/timeline"
 import { getAllHalls, getAllExhibits, getExhibitsSortedByDate } from "@/lib/db"
+import { getCurrentUser, getUserFavorites } from "@/lib/auth"
 import styles from "./page.module.css"
 import {numeralize, pluralize} from "numeralize-ru";
 
@@ -17,6 +18,9 @@ export default async function HomePage() {
   const halls = await getAllHalls()
   const exhibits = await getAllExhibits()
   const sortedExhibits = await getExhibitsSortedByDate()
+  const currentUser = await getCurrentUser()
+  const favorites = await getUserFavorites()
+  const isAuthenticated = !!currentUser
 
   return (
     <div className={styles.wrapper}>
@@ -40,7 +44,12 @@ export default async function HomePage() {
             />
             <div className={styles.hallsGrid}>
               {halls.map((hall) => (
-                <HallCard key={hall.id} hall={hall} />
+                <HallCard 
+                  key={hall.id} 
+                  hall={hall} 
+                  isFavorite={favorites?.halls.includes(hall.id) || false}
+                  isAuthenticated={isAuthenticated}
+                />
               ))}
             </div>
           </div>
@@ -54,7 +63,12 @@ export default async function HomePage() {
             />
             <div className={styles.exhibitsGrid}>
               {exhibits.map((exhibit) => (
-                <ExhibitCard key={exhibit.id} exhibit={exhibit} />
+                <ExhibitCard 
+                  key={exhibit.id} 
+                  exhibit={exhibit}
+                  isFavorite={favorites?.exhibits.includes(exhibit.id) || false}
+                  isAuthenticated={isAuthenticated}
+                />
               ))}
             </div>
           </div>

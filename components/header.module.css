@@ -93,6 +93,72 @@
   color: var(--primary);
 }
 
+.authSection {
+  display: none;
+  align-items: center;
+  margin-left: 16px;
+}
+
+@media (min-width: 768px) {
+  .authSection {
+    display: flex;
+  }
+}
+
+.profileLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  transition: background-color 0.2s;
+}
+
+.profileLink:hover {
+  background-color: var(--muted);
+}
+
+.profileAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.profileName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.signInLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.signInLink:hover {
+  background-color: #8b6642;
+}
+
+.signInLink svg {
+  width: 16px;
+  height: 16px;
+}
+
 .mobileMenuBtn {
   display: flex;
   align-items: center;
@@ -155,4 +221,16 @@
 
 .mobileNavLinkActive {
   color: var(--primary);
+}
+
+.mobileAuthItem {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.mobileAuthIcon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
 }

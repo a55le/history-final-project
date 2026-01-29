@@ -3,7 +3,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { FavoriteButton } from "@/components/favorite-button"
 import { getExhibitById, getHallById, getExhibitsByHall, getAllExhibits } from "@/lib/db"
+import { getCurrentUser, isExhibitFavorite } from "@/lib/auth"
 import { ChevronLeft, ChevronRight, Calendar, Archive, MapPin } from "lucide-react"
 import styles from "./page.module.css"
 
@@ -37,6 +39,10 @@ export default async function ExhibitPage({ params }: ExhibitPageProps) {
   if (!exhibit || !hall) {
     notFound()
   }
+
+  const currentUser = await getCurrentUser()
+  const isAuthenticated = !!currentUser
+  const exhibitIsFavorite = await isExhibitFavorite(exhibitId)
 
   const hallExhibits = await getExhibitsByHall(hallId)
   const currentIndex = hallExhibits.findIndex((e) => e.id === exhibitId)
@@ -101,6 +107,14 @@ export default async function ExhibitPage({ params }: ExhibitPageProps) {
                   <div className={styles.hallBadge}>
                     <MapPin />
                     <span>{hall.title}</span>
+                  </div>
+                  <div className={styles.favoriteWrapper}>
+                    <FavoriteButton 
+                      type="exhibit" 
+                      id={exhibitId} 
+                      isFavorite={exhibitIsFavorite} 
+                      isAuthenticated={isAuthenticated} 
+                    />
                   </div>
                 </div>
 

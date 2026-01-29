@@ -1,0 +1,39 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  color: var(--muted-foreground);
+  transition: all 0.2s;
+}
+
+.button.active .icon {
+  color: #dc2626;
+  fill: #dc2626;
+}
+
+.button:hover:not(:disabled) .icon {
+  color: #dc2626;
+}

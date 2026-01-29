@@ -2,8 +2,9 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Landmark, Menu, X } from "lucide-react"
-import { useState } from "react"
+import { Landmark, Menu, X, User, LogIn } from "lucide-react"
+import { useState, useEffect } from "react"
+import { getCurrentUser } from "@/lib/auth"
 import styles from "./header.module.css"
 
 const navigation = [
@@ -13,9 +14,21 @@ const navigation = [
   { name: "О нас", href: "/about" },
 ]
 
+interface UserData {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+}
+
 export function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [user, setUser] = useState<UserData | null>(null)
+
+  useEffect(() => {
+    getCurrentUser().then(setUser)
+  }, [])
 
   return (
     <header className={styles.header}>
@@ -43,6 +56,22 @@ export function Header() {
           ))}
         </ul>
 
+        <div className={styles.authSection}>
+          {user ? (
+            <Link href="/profile" className={styles.profileLink}>
+              <div className={styles.profileAvatar}>
+                {user.firstName[0]}{user.lastName[0]}
+              </div>
+              <span className={styles.profileName}>{user.firstName}</span>
+            </Link>
+          ) : (
+            <Link href="/signin" className={styles.signInLink}>
+              <LogIn />
+              <span>Войти</span>
+            </Link>
+          )}
+        </div>
+
         <button className={styles.mobileMenuBtn} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
           {mobileMenuOpen ? <X /> : <Menu />}
         </button>
@@ -62,6 +91,27 @@ export function Header() {
                 </Link>
               </li>
             ))}
+            <li className={styles.mobileAuthItem}>
+              {user ? (
+                <Link
+                  href="/profile"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={styles.mobileNavLink}
+                >
+                  <User className={styles.mobileAuthIcon} />
+                  Профиль
+                </Link>
+              ) : (
+                <Link
+                  href="/signin"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={styles.mobileNavLink}
+                >
+                  <LogIn className={styles.mobileAuthIcon} />
+                  Войти
+                </Link>
+              )}
+            </li>
           </ul>
         </div>
       )}
