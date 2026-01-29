@@ -32,7 +32,7 @@
       "id": "kremlin-tour",
       "title": "Экскурсия по Кремлю",
       "description": "Государственная символика Руси в 15 веке",
-      "image": "/placeholder.svg?height=400&width=600",
+      "image": "/hall5.png?height=400&width=600",
       "exhibitsCount": 5
     }
   ],
@@ -201,7 +201,7 @@
       "date": "1497",
       "startDate": 1497,
       "endDate": 1497,
-      "image": "/placeholder.svg?height=500&width=800",
+      "image": "/exhibit15.png?height=500&width=800",
       "artifacts": ["Государственная печать Ивана III", "Копии грамот с оттисками", "Геральдические изображения"]
     },
     {
@@ -213,7 +213,7 @@
       "date": "1485-1495",
       "startDate": 1485,
       "endDate": 1495,
-      "image": "/placeholder.svg?height=500&width=800",
+      "image": "/exhibit16.png?height=500&width=800",
       "artifacts": ["Фрагменты кирпичной кладки", "Чертежи башен", "Оборонительное вооружение"]
     },
     {
@@ -225,7 +225,7 @@
       "date": "1475-1479",
       "startDate": 1475,
       "endDate": 1479,
-      "image": "/placeholder.svg?height=500&width=800",
+      "image": "/exhibit17.png?height=500&width=800",
       "artifacts": ["Иконостас XV века", "Фрески и росписи", "Предметы церковной утвари"]
     },
     {
@@ -237,7 +237,7 @@
       "date": "1487-1491",
       "startDate": 1487,
       "endDate": 1491,
-      "image": "/placeholder.svg?height=500&width=800",
+      "image": "/exhibit18.png?height=500&width=800",
       "artifacts": ["Элементы декора", "Изображения интерьера", "Предметы царского обихода"]
     },
     {
@@ -249,7 +249,7 @@
       "date": "1505-1508",
       "startDate": 1505,
       "endDate": 1508,
-      "image": "/placeholder.svg?height=500&width=800",
+      "image": "/exhibit19.png?height=500&width=800",
       "artifacts": ["Колокола XV-XVI веков", "Чертежи колокольни", "Надписи и декоративные элементы"]
     }
   ],
